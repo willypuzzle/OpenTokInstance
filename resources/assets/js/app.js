@@ -6,17 +6,39 @@
  */
 
 require('./bootstrap');
+import 'vuetify/dist/vuetify.min.css' // Ensure you are using css-loader
 
-window.Vue = require('vue');
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+import Vuetify from 'vuetify'
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
+Vue.use(Vuetify)
+Vue.use(VueRouter)
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
+const routes = [
+    {
+        path: '/rooms',
+        component: require('./components/RoomsComponent'),
+        name: 'rooms'
+    },
+    {
+        path: '/rooms/:id',
+        component: require('./components/RoomSelectedComponent'),
+        name: 'room-selected'
+    },
+]
+
+const router = new VueRouter({
+    routes
+});
+
+Vue.component('datatable', require('ts-vuetify-dom-datatable/js/Datatable'))
 
 const app = new Vue({
-    el: '#app'
+    components: {
+        'main-element': require('./components/MainComponent')
+    },
+    router,
+    el: '#vue-app',
+    template: `<main-element/>`
 });

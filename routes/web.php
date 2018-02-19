@@ -14,3 +14,17 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::middleware('auth')->group(function (){
+    Route::post('/rooms', 'RoomController@store');
+    Route::get('/rooms/data', 'RoomController@data');
+    Route::delete('/rooms/{room}', 'RoomController@delete');
+    Route::delete('/rooms/multi_delete', 'RoomController@multiDelete');
+    Route::post('/rooms/join/{room}', 'RoomContrller@join');
+});
+
+

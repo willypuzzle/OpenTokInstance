@@ -19,12 +19,14 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/embedded', 'HomeController@embedded')->name('embedded');
+
 Route::middleware('auth')->group(function (){
     Route::post('/rooms', 'RoomController@store');
     Route::get('/rooms/data', 'RoomController@data');
     Route::delete('/rooms/{room}', 'RoomController@delete');
     Route::delete('/rooms/multi_delete', 'RoomController@multiDelete');
-    Route::post('/rooms/join/{room}', 'RoomContrller@join');
+    Route::post('/rooms/join/{room}', 'RoomController@join');
 });
 
 

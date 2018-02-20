@@ -9,6 +9,6 @@ class Room extends Model
     //
     protected $fillable = [
         'name',
-        'session_key'
+        'session_id'
     ];
 }

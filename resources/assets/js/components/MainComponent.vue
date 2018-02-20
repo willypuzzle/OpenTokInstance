@@ -1,6 +1,6 @@
 <template>
     <v-app>
-        <router-view></router-view>
+        <router-view :key="$route.path"></router-view>
         <waiter :active="activeWaiterMember"></waiter>
     </v-app>
 </template>

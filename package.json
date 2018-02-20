@@ -14,11 +14,13 @@
         "bootstrap-sass": "^3.3.7",
         "cross-env": "^5.1",
         "jquery": "^3.2",
+        "jwt-builder": "^1.1.0",
         "laravel-mix": "^1.0",
         "lodash": "^4.17.4",
         "vue": "^2.5.7"
     },
     "dependencies": {
+        "@opentok/client": "^2.13.0",
         "ts-vue-dom-waiter": "0.0.3",
         "ts-vuetify-dom-datatable": "^1.0.0-alpha.7",
         "vue-router": "^3.0.1"

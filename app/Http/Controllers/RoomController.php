@@ -49,10 +49,15 @@ class RoomController extends Controller
      */
     public function join(Room $room)
     {
+        list($apiKey, $apiSecret) = $this->getCredentials();
+
         $opentok = $this->generateOpenTok();
 
+
         return [
-            'token' => $opentok->generateToken($room->session_id)
+            'token' => $opentok->generateToken($room->session_id),
+            'session_id' => $room->session_id,
+            'api_key' => $apiKey
         ];
     }
 
@@ -62,6 +67,17 @@ class RoomController extends Controller
      */
     private function generateOpenTok()
     {
+        list($apiKey, $apiSecret) = $this->getCredentials();
+
+        return new OpenTok($apiKey, $apiSecret);
+    }
+
+    /**
+     * @return array
+     * @throws \Exception
+     */
+    private function getCredentials()
+    {
         $apiKey = env('OPENTOK_API_KEY', null);
         $apiSecret = env('OPENTOK_API_SECRET', null);
 
@@ -69,7 +85,10 @@ class RoomController extends Controller
             throw new \Exception('Api Key and/or api secret not set');
         }
 
-        return new OpenTok($apiKey, $apiSecret);
+        return [
+            $apiKey,
+            $apiSecret
+        ];
     }
 
     /**
